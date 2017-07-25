@@ -7,13 +7,17 @@ class RabincppConan(ConanFile):
     license = "Simplified BSD License"
     url = "https://github.com/gamepad64/rabin-cpp"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False]}
-    default_options = "shared=False"
+    options = {"shared": [True, False], "ext_boost": [False, True]}
+    default_options = "shared=False\next_boost=False"
     generators = "cmake"
 
     def source(self):
         self.run("git clone https://github.com/gamepad64/rabin-cpp.git")
         self.run("cd rabin-cpp && git checkout 1.0")
+        
+    def requirements(self):
+        if not self.options.ext_boost:
+            self.requires.add("Boost/1.60.0@memsharded/testing", private=False)
 
     def build(self):
         cmake = CMake(self)
