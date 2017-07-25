@@ -17,7 +17,7 @@ class RabincppConan(ConanFile):
         
     def requirements(self):
         if not self.options.ext_boost:
-            self.requires.add("Boost/1.60.0@memsharded/testing", private=False)
+            self.requires.add("Boost/1.62.0@lasote/stable", private=False)
 
     def build(self):
         cmake = CMake(self)
