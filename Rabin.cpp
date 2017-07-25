@@ -39,9 +39,14 @@ Rabin::Rabin(uint64_t polynomial, uint64_t polynomial_shift, uint64_t minsize, u
 }
 
 void Rabin::slide(char b) {
-	uint8_t out = window.empty() ? 0 : window.front();
-	window.push_back(b);
-	digest = (digest ^ out_table[out]);
+	//uint8_t out = window.empty() ? 0 : window.front();
+	//window.push_back(b);
+
+	uint8_t out = window[wpos];
+	window[wpos] = b;
+	wpos = (wpos+1) % window_size();
+
+	digest ^= out_table[out];
 	append(b);
 }
 
@@ -77,6 +82,11 @@ void Rabin::reset() {
 	slide(1);
 }
 
+size_t Rabin::window_size() const {
+	//return window.capacity();
+	return window.size();
+}
+
 void Rabin::calc_tables() {
 	// calculate table for sliding out bytes. The byte to slide out is used as
 	// the index for the table, the value contains the following:
@@ -93,7 +103,7 @@ void Rabin::calc_tables() {
 		uint64_t hash = 0;
 
 		hash = append_byte(hash, (uint8_t)b, polynomial);
-		for (int i = 0; i < window.capacity()-1; i++) {
+		for (int i = 0; i < window_size()-1; i++) {
 			hash = append_byte(hash, 0, polynomial);
 		}
 		out_table[b] = hash;

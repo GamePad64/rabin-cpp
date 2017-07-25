@@ -2,7 +2,8 @@
 
 #include <array>
 #include <cstdint>
-#include <boost/circular_buffer.hpp>
+#include <vector>
+//#include <boost/circular_buffer.hpp>
 
 class Rabin {
 public:
@@ -24,11 +25,17 @@ private:
 	void calc_tables();
 
 	// Intermediate result
-	boost::circular_buffer<char> window;
+
+	//boost::circular_buffer<char> window;
+	std::vector<char> window;
+	size_t wpos = 0;
+
 	uint64_t count = 0;
 	uint64_t digest = 0;
 
 	void slide(char b);
 	void append(char b);
 	void reset();
+
+	size_t window_size() const;
 };
