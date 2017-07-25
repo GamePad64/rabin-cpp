@@ -9,7 +9,7 @@ if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake")
 	conan_basic_setup(TARGETS)
 endif()
 
-add_library(rabin-cpp STATIC Rabin.cpp Rabin.h)
+add_library(rabin-cpp Rabin.cpp Rabin.h)
 target_include_directories(rabin-cpp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 set_property(TARGET rabin-cpp PROPERTY CXX_STANDARD 11)

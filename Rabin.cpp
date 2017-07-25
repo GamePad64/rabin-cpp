@@ -75,7 +75,10 @@ bool Rabin::finalize() {
 }
 
 void Rabin::reset() {
-	window.clear();
+	//window.clear();
+	wpos = 0;
+	std::fill(window.begin(), window.end(), 0);
+
 	count = 0;
 	digest = 0;
 
