@@ -2,7 +2,7 @@ repo_name: GamePad64/rabin-cpp
 report_id: d64152935f036aa61b6e52d11c861056
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-05T09:21:54+00:00'
+timestamp: '2024-02-29T18:06:41+00:00'
 requested_by: GamePad64
 provider: github
 branch: master
@@ -31,7 +31,7 @@ tools:
   detection_source_url: https://github.com/GamePad64/rabin-cpp
   detection_source: Repo Metadata
 - name: CMake
-  description: 'An open-source system that manages the build process '
+  description: An open-source system that manages the build process
   website_url: http://www.cmake.org/
   open_source: false
   hosted_saas: false
